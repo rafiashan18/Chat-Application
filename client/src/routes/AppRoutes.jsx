@@ -7,13 +7,14 @@ import ProtectedRoute from '../routes/ProtectedRoute';
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path='/login' element={<LoginScreen/>}/>
-            <Route path='/signup' element={<SignupScreen />}/> 
-            <Route path='/chats' element={
+                <Route path='/' element={
                 <ProtectedRoute>
                     <ChatScreen />
                 </ProtectedRoute>
             } />
+            <Route path='/login' element={<LoginScreen/>}/>
+            <Route path='/signup' element={<SignupScreen />}/> 
+        
         </Routes>
     )
 }

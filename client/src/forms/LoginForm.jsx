@@ -39,7 +39,7 @@ const LoginForm = () => {
       // Store user data in Redux
       dispatch(setUser(response.user));
       
-      navigate('/chats')
+      navigate('/')
     }
     catch (err) {
       console.error('Login failed:', err);
