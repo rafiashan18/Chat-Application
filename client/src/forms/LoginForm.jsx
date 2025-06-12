@@ -36,7 +36,6 @@ const LoginForm = () => {
       const response = await login(data).unwrap();
       console.log(response)
       
-      // Store user data in Redux
       dispatch(setUser(response.user));
       
       navigate('/')
@@ -94,6 +93,7 @@ const LoginForm = () => {
             `}
               placeholder="Enter password"
             />
+            
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
@@ -112,7 +112,7 @@ const LoginForm = () => {
         {/* Error Display */}
         {error && (
           <div className="text-red-500 text-sm">
-            {error.data?.message || 'Login failed'}
+            {error.data?.error || 'Login failed'}
           </div>
         )}
 

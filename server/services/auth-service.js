@@ -3,7 +3,7 @@ const { hashedPassword, comparePassword } = require('../utils/hash-password')
 const generateToken = require('../utils/token')
 
 const signup = async (userData) => {
-    console.log("hello")
+   
     const { name, email, password, confirmpassword } = userData;
 
     if (password != confirmpassword) {
@@ -48,8 +48,7 @@ const login = async (data) => {
     }
 
     const token = await generateToken({ _id: user._id, email: user.email })
-    console.log("service lvl token:", token)
-    return { user: { name: user.name, email: user.email, role: user.role }, token }
+    return { user: { name: user.name, email: user.email, role: user.role , profilePicture: user.profilePicture }, token }
 
 }
 const userInfo = async (userId) => {
@@ -59,7 +58,7 @@ if (!user) {
         throw new Error("User doesn't exist")
     }
 
-    return {name: user.name, email: user.email, role: user.role}
+    return {name: user.name, email: user.email, role: user.role , profilePicture: user.profilePicture}
 }
 
 const logout = async (data) => {

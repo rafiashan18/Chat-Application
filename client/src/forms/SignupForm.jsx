@@ -9,10 +9,6 @@ import { LuEyeOff } from "react-icons/lu";
 import { FiEye } from "react-icons/fi";
 import { useSignupMutation } from '../features/auth/authApi';
 
-
-
-
-
 const SignupForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
@@ -59,7 +55,7 @@ const SignupForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-2  border md:space-y-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 text-gray-600 md:space-y-3">
         {/* Name Field */}
         <div className="space-y-1">
           <label className="text-sm font-medium text-gray-700 block">Full Name</label>

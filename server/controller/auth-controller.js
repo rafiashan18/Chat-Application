@@ -3,8 +3,7 @@ const setTokenCookie = require("../utils/cookie");
 
 const signupController = async (req, res) => {
     try {
-        console.log(req.body)
-        console.log("hello")
+       
         const { user, token } = await signup(req.body);
         setTokenCookie(res, token)
         res.status(201).json({
@@ -21,7 +20,6 @@ const signupController = async (req, res) => {
 const loginController = async (req, res) => {
     try {
         const { user, token } = await login(req.body)
-        console.log(token)
         setTokenCookie(res, token);
         res.status(201).json({ message: "Successfully Login", user: { name: user.name, email: user.email } });
 
@@ -51,8 +49,7 @@ const logoutController = async (req, res) => {
 
 const userInfoController = async (req, res) => {
     try {
-        console.log("helloo")
-        console.log(req.user._id)
+        
         const user = await userInfo(req.user._id);
         res.status(201).json({ message: "user data", user });
 
