@@ -1,26 +1,21 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const ChatBubble = () => {
-    return (
-          <>
-        <div className=''>
-      
-           <div >
-             <div className="chat chat-start">
-                <div className="chat-bubble chat-bubble-secondary">
-                    Put me on the Council and not make me a Master!??
-                </div>
-            </div>
+const ChatBubble = ({ message }) => {
+  const currentUserId = useSelector((state) => state.user.user.userId) // adjust based on your Redux structure
+//  console.log("currentUserId:",currentUserId)
+  const isSentByCurrentUser = message.senderId === currentUserId
+  const alignment = isSentByCurrentUser ? 'chat-end' : 'chat-start'
+  const bubbleColor = isSentByCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-secondary'
 
-            <div className="chat chat-end">
-                <div className="chat-bubble chat-bubble-info">Calm down, Anakin.</div>
-            </div>
-           </div>
-           
-               
-        </div>
-          </>
-    )
+  return (
+    <div className={`chat ${alignment} my-4`}>
+      <div className={`chat-bubble ${bubbleColor}`}>
+        {message.message}
+        
+      </div>
+    </div>
+  )
 }
 
 export default ChatBubble

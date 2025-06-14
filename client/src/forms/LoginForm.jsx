@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup'
@@ -9,9 +9,8 @@ import { FiEye } from 'react-icons/fi';
 import { useLoginMutation } from '../features/auth/authApi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../features/auth/userSlice'; 
-
-const LoginForm = () => {
+import { setUser } from '../features/auth/userSlice';
+const LoginForm = ({onLoadingChange}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [login, { isLoading, error }] = useLoginMutation();
   const dispatch = useDispatch();
@@ -30,19 +29,30 @@ const LoginForm = () => {
     { resolver: yupResolver(schema) }
   );
 
+  useEffect(
+    () => {
+
+        onLoadingChange(isLoading)
+      
+    }, [isLoading]
+  )
+
   const onSubmit = async (data) => {
     console.log(data)
     try {
       const response = await login(data).unwrap();
       console.log(response)
-      
+
       dispatch(setUser(response.user));
-      
+
       navigate('/')
     }
     catch (err) {
       console.error('Login failed:', err);
     }
+    // finally{
+    //   onLoadingChange(false)
+    // }
   }
 
   return (
@@ -93,7 +103,7 @@ const LoginForm = () => {
             `}
               placeholder="Enter password"
             />
-            
+
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}

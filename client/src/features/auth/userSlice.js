@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authApi } from './authApi'; // Adjust path as needed
+import { authApi } from './authApi';
 
 const initialState = {
   user: null,
@@ -11,6 +11,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
+      console.log(action.payload)
       state.user = action.payload;
       state.isAuthenticated = true;
     },
