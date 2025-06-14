@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useUserInfoQuery } from './features/auth/authApi';
 import { useEffect } from 'react';
 import { setUser, clearUser } from './features/auth/userSlice';
+import LoadingSpinner from './components/common/LoadingSpinner';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function App() {
 
   // Show loading while checking authentication
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><LoadingSpinner/></div>;
   }
 
   return (

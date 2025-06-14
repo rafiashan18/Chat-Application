@@ -48,7 +48,7 @@ const login = async (data) => {
     }
 
     const token = await generateToken({ _id: user._id, email: user.email })
-    return { user: { name: user.name, email: user.email, role: user.role , profilePicture: user.profilePicture }, token }
+    return { user: { name: user.name, email: user.email, role: user.role , profilePicture: user.profilePicture , userId:user._id}, token }
 
 }
 const userInfo = async (userId) => {
@@ -58,7 +58,7 @@ if (!user) {
         throw new Error("User doesn't exist")
     }
 
-    return {name: user.name, email: user.email, role: user.role , profilePicture: user.profilePicture}
+    return {name: user.name, email: user.email, role: user.role , profilePicture: user.profilePicture , userId:user._id}
 }
 
 const logout = async (data) => {

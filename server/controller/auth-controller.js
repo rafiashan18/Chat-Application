@@ -21,7 +21,7 @@ const loginController = async (req, res) => {
     try {
         const { user, token } = await login(req.body)
         setTokenCookie(res, token);
-        res.status(201).json({ message: "Successfully Login", user: { name: user.name, email: user.email } });
+        res.status(201).json({ message: "Successfully Login", user: user });
 
     }
     catch (error) {

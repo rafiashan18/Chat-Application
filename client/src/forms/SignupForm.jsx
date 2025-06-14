@@ -8,6 +8,7 @@ import { IoLockClosedOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
 import { FiEye } from "react-icons/fi";
 import { useSignupMutation } from '../features/auth/authApi';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = () => {
 
@@ -15,7 +16,7 @@ const SignupForm = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [signup, { isLoading, error }] = useSignupMutation();
-
+  const navigate = useNavigate()
 
 
   const schema = yup.object().shape(
@@ -46,6 +47,7 @@ const SignupForm = () => {
     try {
      const response =  await signup(data).unwrap();
      console.log(response)
+     navigate('/login')
     }
     catch (err) {
       console.error('Signup failed:', err);
